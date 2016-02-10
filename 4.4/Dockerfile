@@ -1,4 +1,5 @@
 FROM kibana:4.4.0
 
-RUN kibana plugin --install elasticsearch/marvel \
- && kibana plugin --install elastic/sense
+# make sure we run the commands as the kibana user
+RUN gosu kibana kibana plugin --install elasticsearch/marvel \
+ && gosu kibana kibana plugin --install elastic/sense
