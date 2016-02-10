@@ -1,0 +1,13 @@
+elasticsearch:
+  container_name: kibana_build_es
+  # image: elasticsearch:2.2.0
+  # same as above, but with marvel agent installed
+  image: ufirstgroup/elasticsearch:2.2.0
+  command: elasticsearch -Des.cluster.name=kibana-test
+kibana:
+  container_name: kibana_build
+  build: ./4.4
+  links:
+   - elasticsearch
+  ports:
+  - "5601:5601"
